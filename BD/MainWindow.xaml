@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="370" Width="250" Background="#FF1B1B1C" >
+    <StackPanel HorizontalAlignment="Left" Margin="20">
+        <Button Width="200" Height="100" Click="Button_Click" Content="Kierownik Produkcji" FontSize="20" Background="#FF3F3F46" />
+        <Button Width="200" Height="100" Click="Button_Click" Content="Projektant" FontSize="20" Background="#FF3F3F46" />
+        <Button Width="200" Height="100" Click="Button_Click" Content="Zarzadca magazynu" FontSize="20" Background="#FF3F3F46"/>
+
+    </StackPanel>
 </Window>

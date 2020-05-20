@@ -1,0 +1,14 @@
+﻿<Window x:Class="BD.Logger_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BD"
+        mc:Ignorable="d"
+        Title="Logger_Window" Height="140" Width="400">
+    <StackPanel Background="#FF252526">
+        <TextBox FontSize="20" BorderBrush="Black" BorderThickness="2" Height="40" Background="#FF404047">Login</TextBox>
+        <TextBox FontSize="20" BorderBrush="Black" BorderThickness="2" Height="40" Background="#FF404047">Haslo</TextBox>
+        <Button Content="Zaloguj" FontSize="20" Background="#FF3F3F46"></Button>
+    </StackPanel>
+</Window>

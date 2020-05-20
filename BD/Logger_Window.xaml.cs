@@ -10,27 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace BD
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
+    /// Logika interakcji dla klasy Logger_Window.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Logger_Window : Window
     {
-        Logger logger;
-        public MainWindow()
+        public Logger_Window()
         {
             InitializeComponent();
-            logger = new Logger();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            logger.ContextMake();
-            logger.LogintoApp("kierownik_produkcji","Kocur"," Sposob");
         }
     }
 }
