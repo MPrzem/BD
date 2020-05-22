@@ -20,17 +20,14 @@ namespace BD
     /// </summary>
     public partial class MainWindow : Window
     {
-        Logger logger;
         public MainWindow()
         {
             InitializeComponent();
-            logger = new Logger();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            logger.ContextMake();
-            logger.LogintoApp("kierownik_produkcji","Kocur"," Sposob");
+            (new Logger_Window()).Show();
         }
     }
 }

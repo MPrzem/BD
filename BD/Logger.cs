@@ -19,10 +19,6 @@ namespace BD
         private string _uid; 
         private string _paswd;
 
-        private string app_user;
-        private string passwd_user;
-
-
         public string ServerIp { get { return _serverIp; } set { _serverIp = value; } }
         public string Database { get { return _database; } set { _database = value; } }
         public string UID { get { return _uid; } set { _uid = value; } }
@@ -58,18 +54,17 @@ namespace BD
         {
 
             String query = string.Format("SELECT ID FROM {0} WHERE Nazwisko='{1}' and Haslo='{2}'", _array,subname,paswd);
-
+            
             MySqlCommand cmd = new MySqlCommand(query, context);
 
             context.Open();
 
             MySqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            /// Ciekawe co bedzie jak tych danych nie odczytam, czy trzeba jakos tego readera czyscic
+            if (reader.Read())
             {
-                int id = (int)reader["ID"];
+                return true;
             }
-
             reader.Close();
 
             context.Close();
@@ -78,8 +73,6 @@ namespace BD
 
             return false;
         }
-
-
 
 
 

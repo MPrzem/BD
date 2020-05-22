@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="Logger_Window" Height="140" Width="400">
+        Title="Logger_Window" Height="152" Width="400">
     <StackPanel Background="#FF252526">
-        <TextBox FontSize="20" BorderBrush="Black" BorderThickness="2" Height="40" Background="#FF404047">Login</TextBox>
-        <TextBox FontSize="20" BorderBrush="Black" BorderThickness="2" Height="40" Background="#FF404047">Haslo</TextBox>
-        <Button Content="Zaloguj" FontSize="20" Background="#FF3F3F46"></Button>
+        <TextBox FontSize="20" BorderBrush="Black" BorderThickness="2" Height="40" Background="#FF404047" Text="{Binding Login}" GotFocus="TextBox_GotFocus" />
+        <TextBox FontSize="20" BorderBrush="Black" BorderThickness="2" Height="40" Background="#FF404047" Text="{Binding Passwd}" GotFocus="TextBox_GotFocus"/>
+        <Button Content="Zaloguj" FontSize="20" Background="#FF3F3F46" BorderBrush="Black" BorderThickness="2" Click="Button_Click"></Button>
     </StackPanel>
 </Window>

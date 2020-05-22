@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="MainWindow" Height="370" Width="250" Background="#FF1B1B1C" >
-    <StackPanel HorizontalAlignment="Left" Margin="20">
-        <Button Width="200" Height="100" Click="Button_Click" Content="Kierownik Produkcji" FontSize="20" Background="#FF3F3F46" />
-        <Button Width="200" Height="100" Click="Button_Click" Content="Projektant" FontSize="20" Background="#FF3F3F46" />
-        <Button Width="200" Height="100" Click="Button_Click" Content="Zarzadca magazynu" FontSize="20" Background="#FF3F3F46"/>
+        Title="MainWindow" Height="500" Width="250" Background="#FF1B1B1C" >
+    <StackPanel HorizontalAlignment="Left" >
+        <Label  Content="Zaloguj jako:" Background="#FFC7C7C7" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18"/>
+        <Button Width="200" Height="100" Click="Button_Click" Content="Kierownik Produkcji" FontSize="20" Background="#FF3F3F46" Margin="20"/>
+        <Button Width="200" Height="100" Click="Button_Click" Content="Projektant" FontSize="20" Background="#FF3F3F46" Margin="20" />
+        <Button Width="200" Height="100" Click="Button_Click" Content="Zarzadca magazynu" FontSize="20" Background="#FF3F3F46" Margin="20"/>
 
     </StackPanel>
 </Window>
