@@ -59,5 +59,21 @@ namespace BD
 
         }
 
+
+        public static bool UpdateQuantity(int ID,int quantity, MySqlConnection dbConn)
+        {
+            bool status;
+            String query = string.Format("UPDATE czesc SET Ilosc='{0}'WHERE ID={1}", quantity,ID);
+            MySqlCommand cmd = new MySqlCommand(query, dbConn);
+            dbConn.Open();
+
+            if (0 != cmd.ExecuteNonQuery())
+                status = true;
+            else status = false;
+            dbConn.Close();
+            return status;
+        }
+
+
     }
 }

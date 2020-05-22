@@ -30,12 +30,12 @@ namespace BD
         public ObservableCollection<Part> Parts { get { return partList; } set { partList = value; OnPropertyChanged(); } }
         MySqlConnection context;
         public string User { get { return "Zalogowany jako: " +_user; } set { _user = value; OnPropertyChanged(); } }
-        public string Quantity { get { return _quantity.ToString(); } set {
+        public string Quantity { get { return "Wpisz ilość: " +_quantity.ToString(); } set {
                 try { _quantity = Int32.Parse(value); }
                 catch { MessageBox.Show("Podano zły format"); }
                 OnPropertyChanged(); }
         }
-        public string Comment { get { return Comment; } set { _comment = value; OnPropertyChanged(); } }
+        public string Comment { get { return "Wprowadz komentarz: " + _comment; } set { _comment = value; OnPropertyChanged(); } }
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
@@ -58,11 +58,19 @@ namespace BD
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
+            if (DataGrid.SelectedItem != null)
+            {
+                context = (new Logger_CB()).ContextMake();
+                Part.UpdateQuantity(((Part)DataGrid.SelectedItem).ID, _quantity, context);
+                Parts = Part.Get_Collection(context);
+
+            }
         }
 
         private void TextBlock_GotFocus(object sender, RoutedEventArgs e)
