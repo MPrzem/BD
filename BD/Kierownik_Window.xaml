@@ -5,47 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BD"
         mc:Ignorable="d"
-        Title="Kierownik_Window" Height="450" Width="800">
+        Title="Kierownik_Window" MinHeight="470" MinWidth="800" Width="900" Height="470" >
 
 
     <StackPanel Background="#FF1B1B1C">
         <TextBlock Text="{Binding User}" FontSize="20 " Foreground ="#FFC5C5C5" FontFamily="Century Schoolbook" DockPanel.Dock="Top" Background="#FF3C3C3E"/>
         <Grid VerticalAlignment="Stretch" >
-            <DataGrid ItemsSource="{Binding Path=Parts}" x:Name="DataGrid"  AutoGenerateColumns="True" MinHeight="395" AlternatingRowBackground="#FF007ACC" RowBackground="#FF3F3F46" MinWidth="500" HorizontalAlignment="Left" VerticalAlignment="Stretch" SelectionChanged="DataGrid_SelectionChanged" Background="#FF1B1B1C">
-                <DataGrid.Columns >
-                    <DataGridTextColumn IsReadOnly="True"/>
-                    <DataGridTextColumn IsReadOnly="True"/>
-                    <DataGridTextColumn IsReadOnly="False"/>
-                    <DataGridTextColumn IsReadOnly="True"/>
-                </DataGrid.Columns>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="282"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid ItemsSource="{Binding Path=Parts}" x:Name="DataGrid" AutoGenerateColumns="True" MinHeight="395" AlternatingRowBackground="#FF007ACC" RowBackground="#FF3F3F46" MinWidth="500" HorizontalAlignment="Left" VerticalAlignment="Stretch" Background="#FF1B1B1C" IsReadOnly="True">
 
             </DataGrid>
-            <Border BorderBrush="WhiteSmoke" BorderThickness="2" Width="280" Height="100" Margin="0,0,5,0" HorizontalAlignment="Right" VerticalAlignment="Top">
-                <Grid Height="100" HorizontalAlignment="Stretch" Width="280"  Background="#FF3E3E40">
-                    <Grid.ColumnDefinitions >
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="100"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                    </Grid.RowDefinitions>
-
-
-                    <TextBox VerticalAlignment="Center" GotFocus="TextBlock_GotFocus" Text="{Binding Quantity}" TextWrapping="WrapWithOverflow" Background="#FF3C3C3E" Height="48" Margin="0,-1,0,3"  />
-                    <Button VerticalAlignment="Center" Grid.Column="1" Click="Button_Click" Background="#FF3E3E4D" BorderBrush="{x:Null}" BorderThickness="0" Height="47" Margin="0,-2,0,5">
-                        <Button.Content>
-                            <TextBlock TextWrapping="WrapWithOverflow"> Nowa ilość</TextBlock>
-                        </Button.Content>
-                    </Button>
-                    <TextBox Grid.Row="1" GotFocus="TextBlock_GotFocus" VerticalAlignment="Center" MaxWidth="210" Text="{Binding Comment}" TextWrapping="WrapWithOverflow" Background="#FF3C3C3E" Height="48" Margin="0,-1,0,3"  />
-                    <Button Grid.Row="1" VerticalAlignment="Center" Grid.Column="1" Click="Button_Click" Background="#FF3E3E4D" BorderBrush="{x:Null}" BorderThickness="0" Height="47" Margin="0,-2,0,5">
-                        <Button.Content>
-                            <TextBlock TextWrapping="WrapWithOverflow"> Dodaj komentarz</TextBlock>
-                        </Button.Content>
-                    </Button>
-                </Grid>
-            </Border>
+            <local:DataMaintance Grid.Column="1" Button1="Zmien ilosc"   x:Name="DataMaintanceInstance" Button3Clicked="DataMaintanceInstance_Button3Clicked" Button2Clicked="DataMaintanceInstance_Button2Clicked" Button1Clicked="DataMaintance_Button1Clicked" Button2="Dodaj komentarz" Button3="Dodaj Nowy" > </local:DataMaintance>
         </Grid>
     </StackPanel>
+    
 </Window>
+
+    

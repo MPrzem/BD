@@ -9,8 +9,8 @@
     <StackPanel HorizontalAlignment="Left" >
         <Label  Content="Zaloguj jako:" Background="#FFC7C7C7" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18"/>
         <Button Width="200" Height="100" Click="Button_Click" Content="Kierownik Produkcji" FontSize="20" Background="#FF3F3F46" Margin="20"/>
-        <Button Width="200" Height="100" Click="Button_Click" Content="Projektant" FontSize="20" Background="#FF3F3F46" Margin="20" />
-        <Button Width="200" Height="100" Click="Button_Click" Content="Zarzadca magazynu" FontSize="20" Background="#FF3F3F46" Margin="20"/>
+        <Button Width="200" Height="100" Click="Button_Click_1" Content="Projektant" FontSize="20" Background="#FF3F3F46" Margin="20" />
+        <Button Width="200" Height="100" Click="Button_Click_2" Content="Zarzadca magazynu" FontSize="20" Background="#FF3F3F46" Margin="20"/>
 
     </StackPanel>
 </Window>

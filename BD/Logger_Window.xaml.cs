@@ -1,36 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace BD
 {
     /// <summary>
     /// Logika interakcji dla klasy Logger_Window.xaml
     /// </summary>
-    public partial class Logger_Window : Window,INotifyPropertyChanged 
+    public partial class Logger_Window : Window, INotifyPropertyChanged
     {
         Logger_CB logger;
         private string _login;
         private string _passwd;
-        
+        private string _table;
         public event PropertyChangedEventHandler PropertyChanged;
+        Action<string> show;
 
-        public string Login { get { return _login; } set { _login = value; OnPropertyChanged(); }}
-        public string Passwd { get { return _passwd; } set{ _passwd = value; OnPropertyChanged(); } }
-        public Logger_Window()
+        public string Login { get { return _login; } set { _login = value; OnPropertyChanged(); } }
+        public string Passwd { get { return _passwd; } set { _passwd = value; OnPropertyChanged(); } }
+        public Logger_Window(string table, Action<string> show)
         {
+            this.show = show;
+            _table = table;
             Login = "Login";
             Passwd = "Haslo";
             InitializeComponent();
@@ -41,10 +34,11 @@ namespace BD
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             logger.ContextMake();
-            if (logger.LogintoApp("kierownik_produkcji", Login, Passwd))
+            if (logger.LogintoApp(_table, Login, Passwd))
             {
                 MessageBox.Show("Logowanie udane!");
-                new Kierownik_Window(Login).Show();
+                show(Login);
+                this.Close();
             }
             else MessageBox.Show("Logowanie nie udane");
 
