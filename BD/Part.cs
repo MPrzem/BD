@@ -108,5 +108,21 @@ namespace BD
             return status;
         }
 
+        public bool DeleteFromModule(int ModuleID, MySqlConnection dbConn)
+        {
+
+            String query = string.Format("DELETE FROM podzespol_has_czesc WHERE podzespol_has_czesc.Podzespol_ID={0} and podzespol_has_czesc.Czesc_ID='{1}' ", ModuleID,ID);
+
+            bool status;
+            
+            MySqlCommand cmd = new MySqlCommand(query, dbConn);
+            dbConn.Open();
+            if (0 != cmd.ExecuteNonQuery())
+                status = true;
+            else status = false;
+            dbConn.Close();
+            return status;
+        }
+
     }
 }

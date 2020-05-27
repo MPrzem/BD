@@ -56,7 +56,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="CarhasComponent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DataMaintance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KierownikProdukcji.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -77,8 +85,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Car.cs" />
+    <Compile Include="CarhasComponent.xaml.cs">
+      <DependentUpon>CarhasComponent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataMaintance.xaml.cs">
       <DependentUpon>DataMaintance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="KierownikProdukcji.xaml.cs">
+      <DependentUpon>KierownikProdukcji.xaml</DependentUpon>
     </Compile>
     <Compile Include="Kierownik_Window.xaml.cs">
       <DependentUpon>Kierownik_Window.xaml</DependentUpon>

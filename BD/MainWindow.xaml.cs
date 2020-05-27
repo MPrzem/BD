@@ -37,7 +37,7 @@ namespace BD
         }
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-
+            (new Logger_Window("zarzadca_magazynu", s => (new Zarzadca(s)).Show())).Show();
         }
     }
 }

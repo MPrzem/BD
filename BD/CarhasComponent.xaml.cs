@@ -18,9 +18,9 @@ using System.Windows.Shapes;
 namespace BD
 {
     /// <summary>
-    /// Logika interakcji dla klasy PodzespolhasPart.xaml
+    /// Logika interakcji dla klasy CarhasComponent.xaml
     /// </summary>
-    public partial class PodzespolhasPart : Window, INotifyPropertyChanged
+    public partial class CarhasComponent : Window, INotifyPropertyChanged
     {
         int quantity;
         public string Quantity
@@ -41,60 +41,56 @@ namespace BD
 
             }
         }
-            ObservableCollection<Part> components;
-        ObservableCollection<Part> avalibleParts;
-        public ObservableCollection<Part> Components { get { return components; } set { components = value; OnPropertyChanged(); } }
-        public ObservableCollection<Part> AvalibleParts { get { return avalibleParts; } set { avalibleParts = value; OnPropertyChanged(); } }
-        Module module;
-
+        ObservableCollection<Module> components;
+        ObservableCollection<Module> avalibleComponents;
+        public ObservableCollection<Module> Components { get { return components; } set { components = value; OnPropertyChanged(); } }
+        public ObservableCollection<Module> AvalibleComponents { get { return avalibleComponents; } set { avalibleComponents = value; OnPropertyChanged(); } }
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-
-        public PodzespolhasPart(Module module)
+        Car car;
+        public CarhasComponent(Car car)
         {
-            this.module = module;
-
             var context = new Logger_CB().ContextMake();
-            avalibleParts = module.GiveAvalibleParts(context);
-            components = module.GiveParts(context);
+
+            this.car = car;
+            Components = car.GetModules(context);
+            AvalibleComponents = car.GetAvalibleModules(context);
             InitializeComponent();
             DataContext = this;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (partsDataGrid.SelectedItem != null)
+            ///Usuwanie
+            if (modulesDataGrid.SelectedItem != null)
             {
                 var context = new Logger_CB().ContextMake();
-                (partsDataGrid.SelectedItem as Part).DeleteFromModule(module.ID, context);  //Raczej powinno byc Module.DeletePart
-                    AvalibleParts = module.GiveAvalibleParts(context);
-                Components = module.GiveParts(context);
+                car.DeleteModule((modulesDataGrid.SelectedItem as Module).ID, context);
+                Components = car.GetModules(context);
+                AvalibleComponents = car.GetAvalibleModules(context);
             }
+
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
-            if (AvalibleDataGrid.SelectedItem != null)
+            if (modulesAvalibleDataGrid.SelectedItem != null)
             {
                 var context = new Logger_CB().ContextMake();
-                module.AddPart((AvalibleDataGrid.SelectedItem as Part).ID, quantity, context);
-                AvalibleParts = module.GiveAvalibleParts(context);
-                Components = module.GiveParts(context);
+                car.AddPart((modulesAvalibleDataGrid.SelectedItem as Module).ID, quantity, context);
+                Components = car.GetModules(context);
+                AvalibleComponents = car.GetAvalibleModules(context);
             }
 
-
         }
-
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             (sender as TextBox).Text = String.Empty;
 
         }
-
-
     }
 }

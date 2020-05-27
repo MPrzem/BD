@@ -8,7 +8,8 @@
         Title="Logger_Window" Height="152" Width="400">
     <StackPanel Background="#FF252526">
         <TextBox FontSize="20" BorderBrush="Black" BorderThickness="2" Height="40" Background="#FF404047" Text="{Binding Login}" GotFocus="TextBox_GotFocus" />
-        <TextBox FontSize="20" BorderBrush="Black" BorderThickness="2" Height="40" Background="#FF404047" Text="{Binding Passwd}" GotFocus="TextBox_GotFocus"/>
+        <PasswordBox x:Name="passwordBox" FontSize="20" BorderBrush="Black" BorderThickness="2" Height="40" Background="#FF404047" GotFocus="passwordBox_GotFocus"/>
         <Button Content="Zaloguj" FontSize="20" Background="#FF3F3F46" BorderBrush="Black" BorderThickness="2" Click="Button_Click"></Button>
+
     </StackPanel>
 </Window>

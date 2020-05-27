@@ -100,7 +100,138 @@ namespace BD
             return status;
         }
 
+        public ObservableCollection<Module> GetAvalibleModules(MySqlConnection dbConn)
+        {
+            
+            String query = string.Format("SELECT *  FROM podzespol JOIN  samochod_has_podzespol ON samochod_has_podzespol.Podzespol_ID=podzespol.ID where Samochod_ID!='{0}'", ID);
 
+            Module tmpModule;
+            MySqlCommand cmd = new MySqlCommand(query, dbConn);
+
+            ObservableCollection<Module> list = new ObservableCollection<Module>();
+
+            dbConn.Open();
+
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                tmpModule = new Module();
+                tmpModule.ID = (int)reader["ID"];
+                tmpModule.Name = reader["Nazwa"].ToString();
+                tmpModule.Quantity = (int)reader["Ilosc"];
+                tmpModule.Comment = reader["Komentarz"].ToString();
+
+                list.Add(tmpModule);
+            }
+            query = string.Format("SELECT *  FROM podzespol where podzespol.ID  NOT IN(select Podzespol_ID from samochod_has_podzespol)");
+            reader.Close();
+            cmd = new MySqlCommand(query, dbConn);
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                tmpModule = new Module();
+                tmpModule.ID = (int)reader["ID"];
+                tmpModule.Name = reader["Nazwa"].ToString();
+                tmpModule.Quantity = (int)reader["Ilosc"];
+                tmpModule.Comment = reader["Komentarz"].ToString();
+
+                list.Add(tmpModule);
+            }
+            reader.Close();
+
+
+            dbConn.Close();
+
+
+            return list;
+
+        }
+
+        public ObservableCollection<Module> GetModules(MySqlConnection dbConn)
+        {
+
+
+            String query = string.Format("SELECT podzespol.*  FROM podzespol, samochod_has_podzespol WHERE podzespol.ID=samochod_has_podzespol.Podzespol_ID&&fabryka.samochod_has_podzespol.Samochod_ID='{0}'", ID);
+
+            Module tmpModule;
+            MySqlCommand cmd = new MySqlCommand(query, dbConn);
+
+            ObservableCollection<Module> list = new ObservableCollection<Module>();
+
+            dbConn.Open();
+
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                tmpModule = new Module();
+                tmpModule.ID = (int)reader["ID"];
+                tmpModule.Name = reader["Nazwa"].ToString();
+                tmpModule.Quantity = (int)reader["Ilosc"];
+                tmpModule.Comment = reader["Komentarz"].ToString();
+
+                list.Add(tmpModule);
+            }
+
+            reader.Close();
+
+            dbConn.Close();
+
+
+            return list;
+
+        }
+
+
+        public bool AddPart(int ModuleID, int quantity, MySqlConnection dbConn)
+        {
+            bool status;
+            String query = string.Format("INSERT INTO samochod_has_podzespol(`Samochod_ID`,`Podzespol_ID`,`Ilosc`)VALUES('{0}','{1}','{2}')", ID, ModuleID, quantity);
+
+            MySqlCommand cmd = new MySqlCommand(query, dbConn);
+
+            dbConn.Open();
+
+            if (0 != cmd.ExecuteNonQuery())
+                status = true;
+            else status = false;
+
+            dbConn.Close();
+
+            return status;
+        }
+
+        public static bool UpdateQuantity(int ID, int quantity, MySqlConnection dbConn)
+        {
+            bool status;
+            String query = string.Format("UPDATE samochod SET Zapotrzebowanie='{0}'WHERE ID={1}", quantity, ID);
+            MySqlCommand cmd = new MySqlCommand(query, dbConn);
+            dbConn.Open();
+
+            if (0 != cmd.ExecuteNonQuery())
+                status = true;
+            else status = false;
+            dbConn.Close();
+            return status;
+        }
+
+
+        public bool DeleteModule(int ModuleID, MySqlConnection dbConn)
+        {
+
+            String query = string.Format("DELETE FROM samochod_has_podzespol WHERE samochod_has_podzespol.Samochod_ID={0} and samochod_has_podzespol.Podzespol_ID='{1}' ", ID, ModuleID);
+
+            bool status;
+
+            MySqlCommand cmd = new MySqlCommand(query, dbConn);
+            dbConn.Open();
+            if (0 != cmd.ExecuteNonQuery())
+                status = true;
+            else status = false;
+            dbConn.Close();
+            return status;
+        }
 
     }
 }

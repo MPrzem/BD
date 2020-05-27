@@ -132,5 +132,22 @@ namespace BD
                 Modules = Module.Get_Collection(context);
             }
         }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            if (CarDataGrid.SelectedItem != null)
+                (new CarhasComponent(CarDataGrid.SelectedItem as Car)).Show();
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            if (ModuleDataGrid.SelectedItem != null)
+            {
+
+                (new PodzespolhasPart(ModuleDataGrid.SelectedItem as Module)).Show();
+
+            }
+
+        }
     }
 }

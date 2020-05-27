@@ -55,8 +55,8 @@
             </Border>
             <DataGrid x:Name ="ModuleDataGrid" Background="#FF1B1B1C" IsReadOnly="True" ItemsSource="{Binding Path=Modules}" AutoGenerateColumns="True" AlternatingRowBackground="#FF007ACC" RowBackground="#FF3F3F46" />
             <DataGrid x:Name="CarDataGrid" Grid.Column="1" Background="#FF1B1B1C" ItemsSource="{Binding Path=Cars}" IsReadOnly="True"  AlternatingRowBackground="#FF007ACC" RowBackground="#FF3F3F46" />
-            <Button Grid.Column="0" Grid.Row="1" Background="#FF3C3C3E" Content="Pokaz/Dodaj elementy składowe" FontSize="18"/>
-            <Button Grid.Column="1" Grid.Row="1" Background="#FF3C3C3E" Content="Pokaz/Dodaj podzespoly skladowe" FontSize="18"/>
+            <Button Grid.Column="0" Grid.Row="1" Background="#FF3C3C3E" Content="Pokaz/Dodaj elementy składowe" FontSize="18" Click="Button_Click_6"/>
+            <Button Grid.Column="1" Grid.Row="1" Background="#FF3C3C3E" Content="Pokaz/Dodaj podzespoly skladowe" FontSize="18" Click="Button_Click_5"/>
             <Grid Grid.Row="2" Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>

@@ -34,7 +34,7 @@ namespace BD
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             logger.ContextMake();
-            if (logger.LogintoApp(_table, Login, Passwd))
+            if (logger.LogintoApp(_table, Login, passwordBox.Password))
             {
                 MessageBox.Show("Logowanie udane!");
                 show(Login);
@@ -52,6 +52,11 @@ namespace BD
         {
             (sender as TextBox).Text = String.Empty;
 
+        }
+
+        private void passwordBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            (sender as PasswordBox).Password = String.Empty;
         }
     }
 

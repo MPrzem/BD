@@ -101,5 +101,128 @@ namespace BD
         }
 
 
+
+        public  bool AddPart(int partID,int quantity, MySqlConnection dbConn)
+        {
+            bool status;
+            String query = string.Format("INSERT INTO podzespol_has_czesc(`Podzespol_ID`,`Czesc_ID`,`Ilosc`)VALUES('{0}','{1}','{2}')", ID,partID,quantity);
+
+            MySqlCommand cmd = new MySqlCommand(query, dbConn);
+
+            dbConn.Open();
+
+            if (0 != cmd.ExecuteNonQuery())
+                status = true;
+            else status = false;
+
+            dbConn.Close();
+
+            return status;
+        }
+
+        public static bool UpdateQuantity(int ID, int quantity, MySqlConnection dbConn)
+        {
+            bool status;
+            String query = string.Format("UPDATE podzespol SET Ilosc='{0}'WHERE ID={1}", quantity, ID);
+            MySqlCommand cmd = new MySqlCommand(query, dbConn);
+            dbConn.Open();
+
+            if (0 != cmd.ExecuteNonQuery())
+                status = true;
+            else status = false;
+            dbConn.Close();
+            return status;
+        }
+
+
+
+
+        public ObservableCollection<Part> GiveParts(MySqlConnection dbConn)
+        {
+
+
+            String query = string.Format("SELECT czesc.*  FROM czesc, podzespol_has_czesc WHERE czesc.ID=podzespol_has_czesc.Czesc_ID&&fabryka.podzespol_has_czesc.Podzespol_ID='{0}'", ID);
+
+            Part tmpPart;
+            MySqlCommand cmd = new MySqlCommand(query, dbConn);
+
+            ObservableCollection<Part> list = new ObservableCollection<Part>();
+
+            dbConn.Open();
+
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                tmpPart = new Part();
+                tmpPart.ID = (int)reader["ID"];
+                tmpPart.Name = reader["Nazwa"].ToString();
+                tmpPart.Quantity = (int)reader["Ilosc"];
+                tmpPart.Price = (double)reader["Cena"];
+                tmpPart.Comment = reader["Komentarz"].ToString();
+
+                list.Add(tmpPart);
+            }
+
+            reader.Close();
+
+            dbConn.Close();
+
+
+            return list;
+
+        }
+        public ObservableCollection<Part> GiveAvalibleParts(MySqlConnection dbConn)
+        {
+
+
+            String query = string.Format("SELECT *  FROM czesc JOIN  podzespol_has_czesc ON podzespol_has_czesc.Czesc_ID=czesc.ID where Podzespol_ID!='{0}'", ID);
+
+            Part tmpPart;
+            MySqlCommand cmd = new MySqlCommand(query, dbConn);
+
+            ObservableCollection<Part> list = new ObservableCollection<Part>();
+
+            dbConn.Open();
+
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                tmpPart = new Part();
+                tmpPart.ID = (int)reader["ID"];
+                tmpPart.Name = reader["Nazwa"].ToString();
+                tmpPart.Quantity = (int)reader["Ilosc"];
+                tmpPart.Price = (double)reader["Cena"];
+                tmpPart.Comment = reader["Komentarz"].ToString();
+
+                list.Add(tmpPart);
+            }
+            query = string.Format("SELECT *  FROM czesc where czesc.ID  NOT IN(select Czesc_ID from podzespol_has_czesc)");
+            reader.Close();
+            cmd = new MySqlCommand(query, dbConn);
+            reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                tmpPart = new Part();
+                tmpPart.ID = (int)reader["ID"];
+                tmpPart.Name = reader["Nazwa"].ToString();
+                tmpPart.Quantity = (int)reader["Ilosc"];
+                tmpPart.Price = (double)reader["Cena"];
+                tmpPart.Comment = reader["Komentarz"].ToString();
+
+                list.Add(tmpPart);
+            }
+            reader.Close();
+
+
+            dbConn.Close();
+
+
+            return list;
+
+        }
+
+
     }
 }

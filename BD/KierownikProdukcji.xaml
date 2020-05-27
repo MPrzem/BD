@@ -1,0 +1,53 @@
+﻿<Window x:Class="BD.Zarzadca"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BD"
+        mc:Ignorable="d"
+        Title="KierownikProdukcji" Height="450" Width="1200">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="PartsDataGrid" Background="#FF1B1B1C" Grid.Row="1" ItemsSource="{Binding Parts}" AlternatingRowBackground="#FF007ACC" RowBackground="#FF3F3F46" />
+        <Label Content="Podzespoły" Foreground="White" FontSize="18" Grid.Row="0" Grid.Column="1" Background="#FF3C3C3E" />
+        <Label Content="Samochody" Foreground="White" FontSize="18" Grid.Row="0" Grid.Column="2" Background="#FF3C3C3E" />
+
+        <Label Content="Czesci" FontSize="18" Foreground="White" Background="#FF3C3C3E" />
+        <DataGrid x:Name="ComponentsDataGrid" Grid.Column="1" Grid.Row="1"  Background="#FF1B1B1C" ItemsSource="{Binding Components}" AlternatingRowBackground="#FF007ACC" RowBackground="#FF3F3F46" />
+        <DataGrid x:Name="CarsDataGrid" Grid.Column="3" Grid.Row="1"  Background="#FF1B1B1C" ItemsSource="{Binding Cars}" AlternatingRowBackground="#FF007ACC" RowBackground="#FF3F3F46" />
+        <Button Grid.Row="2" Content="Usun wybrany element" Background="#FF3E3E4D" Click="Button_Click" />
+        <Grid Grid.Column="1" Grid.Row="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Aktualizuj ilość" Background="#FF3E3E4D" Click="Button_Click_1"  FontSize="18"/>
+            <TextBox x:Name="textBox" GotFocus="TextBox_GotFocus" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" TextWrapping="Wrap" Foreground="White" FontSize="18" Background="#FF3C3C3E" Text="{Binding ComponentQuantity}" />
+        </Grid>
+        <Grid Grid.Column="0" Grid.Row="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Akutalizuj ilość" Background="#FF3E3E4D" Click="Button_Click" FontSize="18"  />
+            <TextBox  GotFocus="TextBox_GotFocus" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" TextWrapping="Wrap" Foreground="White" FontSize="18" Background="#FF3C3C3E" Text="{Binding PartQuantity}" />
+        </Grid>
+        <Grid Grid.Column="2" Grid.Row="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Aktualizuj zapotrzebowanie" Background="#FF3E3E4D" Click="Button_Click_2" FontSize="18"  />
+            <TextBox  GotFocus="TextBox_GotFocus" Grid.Column="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" TextWrapping="Wrap" Foreground="White" FontSize="18" Background="#FF3C3C3E" Text="{Binding CarQuantity}" />
+        </Grid>
+    </Grid>
+</Window>
