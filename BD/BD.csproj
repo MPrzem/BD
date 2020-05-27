@@ -76,6 +76,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Car.cs" />
     <Compile Include="DataMaintance.xaml.cs">
       <DependentUpon>DataMaintance.xaml</DependentUpon>
     </Compile>
@@ -90,13 +91,21 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PodzespolhasPart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Projektant.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Module.cs" />
     <Compile Include="Part.cs" />
+    <Compile Include="PodzespolhasPart.xaml.cs">
+      <DependentUpon>PodzespolhasPart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Projektant.xaml.cs">
       <DependentUpon>Projektant.xaml</DependentUpon>
     </Compile>
