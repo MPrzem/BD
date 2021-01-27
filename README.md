@@ -11,11 +11,11 @@ It is a system that helps in factory inventory management.
 ## Screens from app
 
 <p align="center">
-  <img src="../ss/Startup.png">  
+  <img src="ss/Startup.png">  
   <p align="center" >Startup screen. Role selecting</p>
-  <img src="../ss/Warehouse_manager.png">  
+  <img src="ss/Warehouse_manager.png">  
   <p align="center" >Warehouse manager screen</p>
-  <img src="../ss/Designer.png">
+  <img src="ss/Designer.png">
   <p align="center" >Designer screen</p>
 </p>
 
