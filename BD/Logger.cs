@@ -13,9 +13,7 @@ namespace BD
     {
         private string _serverIp;
         private string _database;
-        /// <summary>
         /// DB User NOT app user
-        /// </summary>
         private string _uid; 
         private string _paswd;
 
@@ -52,7 +50,6 @@ namespace BD
 
         public bool LogintoApp(string _array,string subname, string paswd)
         {
-
             String query = string.Format("SELECT ID FROM {0} WHERE Nazwisko='{1}' and Haslo='{2}'", _array,subname,paswd);
             
             MySqlCommand cmd = new MySqlCommand(query, context);
@@ -60,17 +57,12 @@ namespace BD
             context.Open();
 
             MySqlDataReader reader = cmd.ExecuteReader();
-            /// Ciekawe co bedzie jak tych danych nie odczytam, czy trzeba jakos tego readera czyscic
             if (reader.Read())
             {
                 return true;
             }
             reader.Close();
-
             context.Close();
-
-
-
             return false;
         }
 
